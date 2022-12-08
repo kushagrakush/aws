@@ -21,6 +21,18 @@ pipeline{
                     sh "docker push kushh/aws_docker"
 		        }
 		    }
+			stage('start') {
+		    steps {
+		        script {
+		            withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockercred')]) {
+		                sh "docker login -u kushh -p ${dockercred}"
+				    sh "docker pull kushh/aws_docker"
+				    sh "docker run -itd --port 80:80 --name webserver aws_docker"
+                    }
+                    sh "docker push kushh/java_server_admin"
+		        }
+		    }
+		
 		}
 		
     }
