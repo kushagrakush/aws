@@ -12,15 +12,16 @@ pipeline{
 				sh 'docker build -t kushh/aws_docker:latest .'
 			}
 		}
-		stage('Push') {
-		    steps {
-		        script {
-		            withCredentials([string(credentialsId: 'dockerhubpw', variable: 'dockerhubpw')]) {
-		                sh "docker login -u kushh -p ${dockerhubpw}"
-                    }
-                    sh "docker push kushh/aws_docker"
-		        }
-		    }
+	stage('Push') {
+	    steps {
+		script {
+		    withCredentials([string(credentialsId: 'dockerhubpw', variable: 'dockerhubpw')]) {
+			sh "docker login -u kushh -p ${dockerhubpw}"
+	    }
+	    sh "docker push kushh/aws_docker"
+		}
+	    }
+	}
 			stage('start') {
 		    steps {
 		        script {
