@@ -30,7 +30,6 @@ pipeline{
 			    }
 				    sh "docker pull kushh/aws_docker"
 				    sh "docker run -itd --port 80:80 --name webserver aws_docker"
-                    		sh "docker push kushh/java_server_admin"
 		        }
 		    }
 		
