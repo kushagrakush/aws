@@ -24,7 +24,7 @@ pipeline{
 	}
 			stage('start') {
 		    steps {
-				    sh "docker run -itd -p 80:80 --name webserver aws_docker"
+				    sh "docker run -itd -p 80:80 --name webserver kushh/aws_docker"
 		        }
 		    }
 		
